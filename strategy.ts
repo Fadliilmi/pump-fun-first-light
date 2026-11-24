@@ -16,8 +16,8 @@
 //     at 1% of the coin's real SOL reserve, the harness cap). At most 5
 //     open positions, one entry attempt per coin, ever.
 //   - Exit: sell the whole position when the price rises 30% above entry
-//     (take the pop before the dump), or falls 20% from the
-//     highest price seen since entry (trailing stop), or 25% below the
+//     (take the pop before the dump), or falls 15% from the
+//     highest price seen since entry (trailing stop), or 15% below the
 //     entry price (hard stop), or when the coin goes stale (150 trades or
 //     30000 slots held with no exit). The harness flattens anything left
 //     at the end of the replay and closes positions whose curve completes.
@@ -39,10 +39,10 @@ const STAKE_LAMPORTS = (LAMPORTS_PER_SOL * 6n) / 100n; // 0.06 SOL per coin
 const MIN_BUY_LAMPORTS = (LAMPORTS_PER_SOL * 2n) / 100n; // 0.02 SOL: smallest buy worth the fees
 const RISE_TO_ENTER_BPS = 1200; // enter only after +12% vs first-seen price
 const ENTER_WITHIN_TRADES = 12; // ... while the coin is still brand new
-const TAKE_PROFIT_BPS = 3000; // bank the win at +30% vs entry: fresh coins pop, then dump
+const TAKE_PROFIT_BPS = 4000; // bank the win at +40% vs entry: let the pop run further
 const ENTER_WITHIN_SLOTS = 2500; // ... and created within the last 2500 slots
-const TRAIL_BPS = 2000; // sell when 20% below the peak since entry
-const STOP_BPS = 2500; // ... or 25% below entry, whichever comes first
+const TRAIL_BPS = 1500; // sell when 15% below the peak since entry
+const STOP_BPS = 1500; // ... or 15% below entry, whichever comes first
 const STALE_TRADES = 150; // give up on a flat coin after 150 trades
 const STALE_SLOTS = 30000; // ... or 30000 slots held, whichever comes first
 const BUY_SLIPPAGE_BPS = 5000; // wide: a new coin moves fast in the latency
