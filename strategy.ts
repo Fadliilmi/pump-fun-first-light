@@ -10,8 +10,8 @@
 //   - A coin becomes a candidate when its CreateEvent arrives. Its
 //     first-seen price is recorded from the curve reserves on the first
 //     trade we observe for it.
-//   - Entry: while the coin is still young (at most 12 trades old, created
-//     within the last 2500 slots) and its price has risen at least 12%
+//   - Entry: while the coin is still young (at most 8 trades old, created
+//     within the last 2500 slots) and its price has risen at least 3%
 //     above its first-seen price, buy one small stake of 0.06 SOL (capped
 //     at 1% of the coin's real SOL reserve, the harness cap). At most 5
 //     open positions, one entry attempt per coin, ever.
@@ -36,8 +36,8 @@ import { LAMPORTS_PER_SOL } from "./vendor/makefun-bot.ts";
 // --- Tunables: round numbers, chosen for breadth over concentration. ---
 const STAKE_LAMPORTS = (LAMPORTS_PER_SOL * 6n) / 100n; // 0.06 SOL per coin
 const MIN_BUY_LAMPORTS = (LAMPORTS_PER_SOL * 2n) / 100n; // 0.02 SOL: smallest buy worth the fees
-const RISE_TO_ENTER_BPS = 1200; // enter only after +12% vs first-seen price
-const ENTER_WITHIN_TRADES = 12; // ... while the coin is still brand new
+const RISE_TO_ENTER_BPS = 300; // enter only after +3% vs first-seen price
+const ENTER_WITHIN_TRADES = 8; // ... while the coin is still brand new
 const ENTER_WITHIN_SLOTS = 2500; // ... and created within the last 2500 slots
 const TRAIL_BPS = 2000; // sell when 20% below the peak since entry
 const STOP_BPS = 2500; // ... or 25% below entry, whichever comes first
